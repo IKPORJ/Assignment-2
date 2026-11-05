@@ -32,3 +32,41 @@ body {
 a {
     color: inherit;
 }
+/* ---------- 2. TOP HEADER & NAVIGATION ---------- */
+
+/* "body > header" = only the header directly inside body,
+   not the second header inside <main> */
+body > header h1 {
+    background-color: var(--yellow);
+    color: var(--dark-gray);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    padding: 1rem;
+}
+
+/* Dark gray strip under the title */
+nav {
+    background-color: var(--dark-gray);
+}
+
+/* Flexbox turns the vertical list into a centered row */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 0.9rem 1rem;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* Hover feedback */
+nav a:hover {
+    color: var(--yellow);
+}
