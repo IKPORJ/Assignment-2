@@ -73,15 +73,13 @@ nav a:hover {
 
 /* ---------- 3. SONG BANNER ---------- */
 
-/* Header inside <main>: text on the left, cover on the right */
 main > header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 2.5rem 4rem;
+    padding: 1.5rem 3rem;
 
-    /* Dark overlay on top of the album image so text is readable */
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
         url("images/talking_heads-speaking_in_tongues.png");
@@ -93,65 +91,65 @@ main > header {
 #artist_info h1 {
     color: var(--yellow);
     text-transform: uppercase;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin-bottom: 0.4rem;
 }
 
 #artist_info h2 {
     color: var(--white);
     text-transform: uppercase;
-    font-size: 1.3rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
 #artist_info h3 {
     color: #cccccc;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
-/* Small framed album cover */
 #album_cover img {
     display: block;
-    width: 110px;
-    height: 110px;
+    width: 90px;
+    height: 90px;
     object-fit: cover;
     border: 4px solid var(--yellow);
     outline: 3px solid #d9232d;
 }
 /* ---------- 4. LAYOUT & LYRICS ---------- */
 
-/* Two columns: lyrics on the left, sidebar on the right */
+/* The content area is capped at 1000px and centered, so on a wide
+   monitor the columns stay close together like the design. */
 article {
     display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 2rem auto;      /* auto centers the block */
-    padding: 0 2rem;
+    align-items: stretch;      /* sidebar is as tall as the lyrics */
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 2rem auto;         /* auto = centered */
+    padding: 0 1.5rem;
 }
 
-/* flex 2 : 1 = lyrics get about two thirds of the width */
+/* flex 3 : 2 = lyrics get 60%, sidebar gets 40%.
+   min-width: 0 lets the columns shrink on small screens. */
 #lyrics {
-    flex: 2;
+    flex: 3;
+    min-width: 0;
 }
 
 #about {
-    flex: 1;
+    flex: 2;
+    min-width: 0;
 }
 
-/* Space between verse/chorus blocks */
 #lyrics section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 /* Choruses (2nd and 4th sections) are indented */
 #lyrics section:nth-child(even) {
-    margin-left: 3.5rem;
+    margin-left: 3rem;
 }
 
-/* [VERSE 1] / [CHORUS] labels; inline-block makes the
-   yellow background hug the text */
 #lyrics h2 {
     display: inline-block;
     background-color: var(--yellow);
@@ -162,23 +160,20 @@ article {
     margin-bottom: 0.8rem;
 }
 
-/* Lyric lines with a yellow bar on the left */
 #lyrics p {
-    font-size: 0.8rem;
-    line-height: 1.3;
+    font-size: 0.85rem;
+    line-height: 1.35;
     padding-left: 0.8rem;
     border-left: 4px solid var(--yellow);
 }
 /* ---------- 5. ABOUT SIDEBAR ---------- */
 
-/* Dark gray box with a thin light border */
 #about {
     background-color: var(--dark-gray);
     color: var(--white);
     border: 1px solid #999999;
 }
 
-/* Yellow heading bar */
 #about h2 {
     background-color: var(--yellow);
     color: var(--dark-gray);
@@ -187,20 +182,125 @@ article {
     padding: 1rem;
 }
 
-/* Padding order: top, left/right, bottom */
 #about p {
     font-size: 0.85rem;
     padding: 1rem 1rem 0;
 }
 
-/* Margin order: top, right, bottom, left */
+/* Indented quote. Margin order: top, right, bottom, left */
 #about blockquote {
     font-size: 0.85rem;
-    margin: 1rem 1rem 1.5rem 2rem;
+    margin: 1rem 1.2rem 1.5rem 2.2rem;
 }
 
-/* Citation number [1] */
 #about sup a {
     color: var(--yellow);
     text-decoration: none;
+}
+/* ---------- 6. FOOTER ---------- */
+
+footer {
+    border-top: 5px solid var(--yellow);
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    font-size: 0.7rem;
+    color: var(--text-gray);
+}
+
+/* Yellow highlighted link; break-all lets the long URL wrap
+   on small screens instead of causing sideways scrolling */
+footer a {
+    background-color: var(--yellow);
+    color: var(--dark-gray);
+    text-decoration: none;
+    word-break: break-all;
+}
+/* ---------- 7. RESPONSIVE DESIGN ---------- */
+
+/* Tablets: tighter spacing, columns stay side by side */
+@media (max-width: 800px) {
+
+    article {
+        padding: 0 4%;
+        gap: 1rem;
+    }
+
+    main > header {
+        padding: 1.5rem;
+    }
+}
+
+/* Phones: everything shrinks so the About box
+   stays beside the lyrics and fits the screen */
+@media (max-width: 600px) {
+
+    body > header h1 {
+        font-size: 1.3rem;
+        padding: 0.8rem;
+    }
+
+    nav ul {
+        gap: 1.5rem;
+    }
+
+    /* Banner stays in a row: text left, small cover right */
+    main > header {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    #artist_info h1 { font-size: 0.95rem; }
+    #artist_info h2 { font-size: 0.8rem; }
+    #artist_info h3 { font-size: 0.65rem; }
+
+    #album_cover img {
+        width: 55px;
+        height: 55px;
+        border-width: 3px;
+        outline-width: 2px;
+    }
+
+    article {
+        gap: 0.6rem;
+        padding: 0 3%;
+        margin: 1rem 0;
+    }
+
+    /* Lyrics */
+    #lyrics section:nth-child(even) {
+        margin-left: 1rem;
+    }
+
+    #lyrics h2 {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.4rem;
+        margin-bottom: 0.4rem;
+    }
+
+    #lyrics p {
+        font-size: 0.6rem;
+        padding-left: 0.4rem;
+        border-left-width: 3px;
+    }
+
+    /* About sidebar */
+    #about h2 {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+    }
+
+    #about p {
+        font-size: 0.6rem;
+        padding: 0.5rem 0.5rem 0;
+    }
+
+    #about blockquote {
+        font-size: 0.6rem;
+        margin: 0.5rem 0.5rem 0.8rem 1rem;
+    }
+
+    footer {
+        padding: 1rem;
+        font-size: 0.6rem;
+    }
 }
